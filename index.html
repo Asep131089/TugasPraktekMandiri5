@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Asep Maulana</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg fixed-top"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="#">PORTOFOLIO</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+          aria-controls="navbarText"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-right" id="navbarText">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#kontak">kontak kami</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid banner">
+      <div class="container text-center">
+        <h4 class="display-6">Selamat datang di Website saya</h4>
+        <h3 class="display-5">Asep Maulana!</h3>
+        <div id="currentTime" class="mt-3" style="font-size: 1.5em"></div>
+      </div>
+    </div>
+
+    <!-- kontak -->
+    <div class="container-fluid pt-5 pb-5 kontak">
+      <div class="container">
+        <h2 class="display-3 text-center" id="kontak">Kontak Kami</h2>
+        <p class="text-center">
+          Ini adalah halaman Kontak Kami, silahkan hubungi kami jika ada kendala
+        </p>
+        <div class="row pb-3">
+          <div class="col-md-6">
+            <input
+              class="form-control form-control-lg mb-3"
+              type="text"
+              id="name"
+              placeholder="Nama"
+              required
+            />
+            <input
+              class="form-control form-control-lg mb-3"
+              type="email"
+              id="email"
+              placeholder="Email"
+              required
+            />
+            <input
+              class="form-control form-control-lg"
+              type="tel"
+              id="phone"
+              placeholder="No. Phone"
+              required
+            />
+          </div>
+          <div class="col-md-6">
+            <textarea
+              class="form-control form-control-lg"
+              id="message"
+              rows="5"
+              placeholder="Pesan"
+              required
+            ></textarea>
+          </div>
+        </div>
+        <div class="col-md-3 mx-auto text-center">
+          <button type="button" id="submitButton" class="btn btn-danger btn-lg">
+            Kirim Pesan
+          </button>
+        </div>
+        <div
+          id="successMessage"
+          class="alert alert-success mt-5"
+          style="display: none"
+        >
+          Berhasil Dikirim
+        </div>
+      </div>
+    </div>
+    <div class="container text-center pt-5 pb-5">
+      All Rights reserved&copy;2024
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // Menampilkan waktu saat ini
+      function updateTime() {
+        const currentTimeElement = document.getElementById("currentTime");
+        const now = new Date();
+
+        const day = String(now.getDate()).padStart(2, "0");
+        const month = String(now.getMonth() + 1).padStart(2, "0"); // Januari adalah 0
+        const year = now.getFullYear();
+
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        const seconds = String(now.getSeconds()).padStart(2, "0");
+
+        const formattedTime = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+        currentTimeElement.textContent = formattedTime;
+      }
+
+      setInterval(updateTime, 1000); // Memperbarui waktu setiap detik
+
+      // Menangani pengiriman pesan
+      document
+        .getElementById("submitButton")
+        .addEventListener("click", function () {
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const phone = document.getElementById("phone").value;
+          const message = document.getElementById("message").value;
+
+          if (name && email && phone && message) {
+            document.getElementById("successMessage").style.display = "block";
+
+            // Reset form
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("message").value = "";
+          } else {
+            alert("Semua Form wajib diisi.");
+          }
+        });
+
+      // Memanggil updateTime saat halaman pertama kali dimuat
+      updateTime();
+    </script>
+  </body>
+</html>
